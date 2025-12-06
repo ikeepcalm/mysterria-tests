@@ -1,0 +1,49 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+
+  liquibase:
+    enabled: false
+  
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            client-id: test-client-id
+            client-secret: test-client-secret
+            scope: identify,guilds
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/api/auth/discord/callback
+        provider:
+          discord:
+            authorization-uri: https://discord.com/api/oauth2/authorize
+            token-uri: https://discord.com/api/oauth2/token
+            user-info-uri: https://discord.com/api/users/@me
+
+jwt:
+  secret: dGVzdHNlY3JldGtleXRoYXRpc2F0bGVhc3QyNTZiaXRzbG9uZ2ZvcnRlc3RpbmdwdXJwb3Nlcw==
+  access-token-expiration: 3600000
+  refresh-token-expiration: 604800000
+
+discord:
+  token: test-bot-token
+  guild-id: test-guild-id
+  client-id: test-client-id
+
+internal:
+  api:
+    key: test-internal-api-key
+
+logging:
+  level:
+    net.mysterria.backend: WARN
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    org.hibernate: WARN
