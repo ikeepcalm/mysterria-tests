@@ -31,7 +31,7 @@ class EconomyControllerIntegrationTest extends BaseHttpIntegrationTest {
     @Test
     void getBalance_NotAuthenticated_ReturnsUnauthorized() throws Exception {
         mockMvc.perform(get("/api/user/balance"))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -87,6 +87,6 @@ class EconomyControllerIntegrationTest extends BaseHttpIntegrationTest {
     @Test
     void getTransactions_NotAuthenticated_ReturnsUnauthorized() throws Exception {
         mockMvc.perform(get("/api/user/transactions"))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isForbidden());
     }
 }

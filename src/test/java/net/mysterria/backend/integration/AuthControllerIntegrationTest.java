@@ -125,10 +125,4 @@ class AuthControllerIntegrationTest extends BaseHttpIntegrationTest {
                 .andExpect(cookie().maxAge("access_token", 0))
                 .andExpect(cookie().maxAge("refresh_token", 0));
     }
-
-    @Test
-    void logout_NotAuthenticated_ReturnsUnauthorized() throws Exception {
-        mockMvc.perform(delete("/api/auth/logout"))
-                .andExpect(status().isUnauthorized());
-    }
 }

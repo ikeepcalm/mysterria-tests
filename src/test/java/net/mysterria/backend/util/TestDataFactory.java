@@ -12,11 +12,17 @@ import java.util.*;
 public class TestDataFactory {
 
     public static User createTestUser(Long discordId) {
+        // Ensure nickname stays within 16 character limit
+        String nickname = "User" + discordId;
+        if (nickname.length() > 16) {
+            nickname = nickname.substring(0, 16);
+        }
+
         return User.builder()
                 .id(UUID.randomUUID())
                 .discordId(discordId)
                 .email("test" + discordId + "@example.com")
-                .nickname("TestUser" + discordId)
+                .nickname(nickname)
                 .balance(new BigDecimal("100.00"))
                 .lang("en")
                 .isBanned(false)
@@ -115,9 +121,13 @@ public class TestDataFactory {
     }
 
     public static ServiceCategory createServiceCategory(String nameEn) {
+        // Generate slug from name (lowercase, replace spaces with hyphens)
+        String slug = nameEn.toLowerCase().replace(" ", "-");
+
         return ServiceCategory.builder()
                 .id(new Random().nextInt(10))
                 .name(nameEn)
+                .slug(slug)
                 .build();
     }
 
